@@ -74,8 +74,8 @@
 	<h2>Dangling pointers</h2>
 	<pre><code class="c" data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 int* abc() {
-	int x = 1;
-	return &amp;x;
+    int x = 1;
+    return &amp;x;
 }
 	</code></pre>
 	</section>
@@ -93,9 +93,9 @@ vector&lt;int>::iterator itr = x.begin();
 
 int j=0;
 for (itr; itr !=x.end(); itr++) {
-	x.push_back(j);
-	j++;
-	cout << j << " .. ";
+    x.push_back(j);
+    j++;
+    cout << j << " .. ";
 }
 	</code></pre>
 	<br>
@@ -171,20 +171,20 @@ fn greater(a: i32, b: i32) -> i32 {
 	<pre><code class="rust" data-trim style="font-size: 18px; margin-top: 20px;">
 let number = 5u32;
 let size = match number {
-	0 => "none",
-	2 | 3 => "tiny",
-	4..=7 => "small",	
-	8..=20 => "medium",
-	_ => "large"
+    0 => "none",
+    2 | 3 => "tiny",
+    4..=7 => "small",	
+    8..=20 => "medium",
+    _ => "large"
 };
 // Multiple statements in a match work!
 match number {
-	2 | 8 | 9 => {
-	  let mut c = 1;
-	  c += number;
-	  println!("The incremented number is {}", c);
-	},
-	_ => println!("We don't have the ability to increment this number, sorry")
+    2 | 8 | 9 => {
+        let mut c = 1;
+        c += number;
+        println!("The incremented number is {}", c);
+    },
+    _ => println!("We don't have the ability to increment this number, sorry")
 }
 	</code></pre>
 	</section>
@@ -195,18 +195,18 @@ let pair = (4u32, 5u32);
 let (a, b) = pair; // a=4, b=5
 let (b, a) = (a, b); // Swap!
 let smaller = match pair {
-	(x, y) if x &lt; y => x,
-	(_, y) => y
+    (x, y) if x &lt; y => x,
+    (_, y) => y
 };
 
 match pair {
-	(0, 0) => println!("Origin"),
-	(0, y) => println!("Y-axis, coordinate {}", y),
-	(x, 0) => println!("X-axis, coordinate {}", x),
-	(x, y) => {
-	  let distance = ((x*x + y*y) as f32).sqrt();
-	  println!("Point is ({}, {}), and {} units from origin", x, y, distance);
-	}
+    (0, 0) => println!("Origin"),
+    (0, y) => println!("Y-axis, coordinate {}", y),
+    (x, 0) => println!("X-axis, coordinate {}", x),
+    (x, y) => {
+        let distance = ((x*x + y*y) as f32).sqrt();
+        println!("Point is ({}, {}), and {} units from origin", x, y, distance);
+    }
 };
 	</code></pre>
 	</section>
@@ -220,8 +220,8 @@ match pair {
 		<h2>Structs</h2>
 	<pre><code class="rust" data-trim style="font-size: 18px; margin-top: 20px;">
 struct Point {
-	pub x: i32,
-	pub y: i32
+    pub x: i32,
+    pub y: i32
 }
 
 let p = Point {x: 0, y: 0};
@@ -232,14 +232,14 @@ println!("X coordinate is {}", p.x)
 		<h2>Enums</h2>
 	<pre><code class="rust" data-trim style="font-size: 18px; margin-top: 20px;">
 enum Shape {
-	Circle(Point, u32),
-	Rectangle(Point, Point)
+    Circle(Point, u32),
+    Rectangle(Point, Point)
 }
 
 // Real world example
 enum Option&lt;T> {
-	Some(T),
-	None
+    Some(T),
+    None
 }
 
 let origin = Point {x: 0, y: 0};
@@ -250,21 +250,21 @@ let circ = Shape::Circle(origin, 10);
 		<h2>Matching!</h2>
 	<pre><code class="rust" data-trim style="font-size: 18px; margin-top: 20px;">
 let perimeter = match shape {
-	Circle(_, r) => 2*pi*r,
-	Rectangle(p1, p2) => 2*abs(p2.x - p1.x) + 2*abs(p2.y - p1.y)
+    Circle(_, r) => 2*pi*r,
+    Rectangle(p1, p2) => 2*abs(p2.x - p1.x) + 2*abs(p2.y - p1.y)
 }
 
 // But wait, we can match on structs too!
 let perimeter = match shape {
-	Circle(_, r) => 2*pi*r,
-	Rectangle(Point {x: x1, y: y1}, Point {x: x2, y: y2}) => 
-	  2*abs(x2 - x1) + 2*abs(y2 - y1)
+    Circle(_, r) => 2*pi*r,
+    Rectangle(Point {x: x1, y: y1}, Point {x: x2, y: y2}) => 
+        2*abs(x2 - x1) + 2*abs(y2 - y1),
 }
 
 // Patterns nest pretty well
 match point {
-	Point {x: 2..=6, y: -1..=5} => println!("I like this point"),
-	_ => println!("I do not like this point")
+    Point {x: 2..=6, y: -1..=5} => println!("I like this point"),
+    _ => println!("I do not like this point")
 }
 	</code></pre>
 	</section>
@@ -272,16 +272,16 @@ match point {
 		<h2>Generics</h2>
 	<pre><code class="rust" data-trim style="font-size: 18px; margin-top: 20px;">
 enum Option&lt;T> {
-	Some(T),
-	None
+    Some(T),
+    None
 }
 
 fn maybe_sqrt(x: i32) -> Option&lt;u32> {
-	if x >= 0 {
-	  Some(sqrt(x) as u32)
-	} else {
-	  None
-	}
+    if x >= 0 {
+        Some(sqrt(x) as u32)
+    } else {
+        None
+    }
 }
 	</code></pre>
 	</section>
@@ -289,15 +289,15 @@ fn maybe_sqrt(x: i32) -> Option&lt;u32> {
 		<h2>Implementations</h2>
 	<pre><code class="rust" data-trim style="font-size: 18px; margin-top: 20px;">
 impl Point {
-	fn distance(&self) -> f32 { // Called as point.distance()
-	    ((self.x*self.x + self.y*self.y) as f32).sqrt()
-	}
-	fn random() -> Point { // Called as Point::random()
-	  Point {
-	    x: 4, // Chosen by fair dice roll
-	    y: 4  // Guaranteed to be random
-	  }
-	}
+    fn distance(&self) -> f32 { // Called as point.distance()
+        ((self.x*self.x + self.y*self.y) as f32).sqrt()
+    }
+    fn random() -> Point { // Called as Point::random()
+        Point {
+            x: 4, // Chosen by fair dice roll
+            y: 4  // Guaranteed to be random
+        }
+    }
 }
 
 	</code></pre>
@@ -307,20 +307,24 @@ impl Point {
 	<pre><code class="rust" data-trim style="font-size: 18px; margin-top: 20px;">
 // Haskell's type classes, anyone?
 trait Pointy {
-        fn poke(&self, at: &str);
-        // One can also give full function bodies here
+    fn poke(&self, at: &str);
+    // One can also give full function bodies here
+    fn double_poke(&self, at: &str) {
+        self.poke(at);
+	self.poke(at);
+    }
 }
 
 impl Pointy for Point {
-        fn poke(&self, at: &str) {
-                println!("Poked {}", at);
-        }
+    fn poke(&self, at: &str) {
+        println!("Poked {}", at);
+    }
 }
 
 fn poke_forever&lt;T: Pointy>(pointy: T, at: &str) {
-        loop {
-         pointy.poke(at)
-        }
+    loop {
+        pointy.poke(at)
+    }
 }
 
 	</code></pre>
