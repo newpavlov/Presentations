@@ -106,16 +106,16 @@ for (itr; itr !=x.end(); itr++) {
 	<section>
 	<h2>Why is this a problem?</h2>
 	<ul>
-		<li>SEGFAULT, SEGFAULT, SEGFAULT (Or: runtime failures are bad)</li>
+		<li>SEGFAULT, SEGFAULT, SEGFAULT</li>
 		<li>Extremely common source of security bugs in browsers and similar applications</li>
-		<li>70 percent of all security bugs are memory safety issues (<a href="https://hacks.mozilla.org/2019/02/rewriting-a-browser-component-in-rust/">Mozilla</a>, <a href="https://www.zdnet.com/article/microsoft-70-percent-of-all-security-bugs-are-memory-safety-issues/">Microsoft</a>, <a href="https://www.zdnet.com/article/chrome-70-of-all-security-bugs-are-memory-safety-issues/">Google</a>)</li>
-		<li>Existing solutions for safety are slow and usually require a separate runtime with a GC</li>
+		<li>70 percents of all security bugs are memory safety issues (<a href="https://hacks.mozilla.org/2019/02/rewriting-a-browser-component-in-rust/">Mozilla</a>, <a href="https://www.zdnet.com/article/microsoft-70-percent-of-all-security-bugs-are-memory-safety-issues/">Microsoft</a>, <a href="https://www.zdnet.com/article/chrome-70-of-all-security-bugs-are-memory-safety-issues/">Google</a>)</li>
+		<li>Memory safety can be achieved by using GC, but with sacrificed performance and applicability.</li>
 	</ul>
 	<img src="heartbleed.png">
 	</section>
 </section>
 <section>
-	<img src="rust.png" style="max-height:75%; max-width:75%">
+	<img src="rust.png" style="max-height:50%; max-width:50%">
 	<p>Empowering everyone to build reliable and efficient software.</p>
 	<p><a href="https://stackoverflow.blog/2020/05/27/2020-stack-overflow-developer-survey-results/">StackOverflow: The most loved language 5 years in a row.</a></p>
 </section>
@@ -127,19 +127,19 @@ for (itr; itr !=x.end(); itr++) {
 		<h2>If, loops, functions</h2>
 	<pre><code class="rust" data-trim style="font-size: 18px; margin-top: 20px;">
 if a > 1 {
-	println!("{:?}", a);
+    println!("{:?}", a);
 }
 
 let mut i: i32 = 0;
 loop {
-	if i > 10 { break; }
-	i += 1;
-	println!("{:?}", i);
+    if i > 10 { break; }
+    i += 1;
+    println!("{:?}", i);
 }
 
 fn multiply(x: i32, y: i32) -> i32 {
-	// The return statement is unnecessary, this will be explained later
-	return x*y;
+    // The return statement is unnecessary, this will be explained later
+    return x*y;
 }
 	</code></pre>
 	</section>
@@ -149,19 +149,19 @@ fn multiply(x: i32, y: i32) -> i32 {
 	<pre><code class="rust" data-trim style="font-size: 18px; margin-top: 20px;">
 let b = 3i32;
 let a = if b > 1 {
-	let mut c = b - 5;
-	c = c * b; // Removing these two semicolons cause errors
-	c // This "returns" the value of c, due to the lack of semicolon
+    let mut c = b - 5;
+    c = c * b; // Removing these two semicolons cause errors
+    c // This "returns" the value of c, due to the lack of semicolon
 } else {
-	1i32
+    1i32
 };
 
 fn greater(a: i32, b: i32) -> i32 {
-	if a > b {
-		  a
-	} else {
-		  b
-	}
+    if a > b {
+        a
+    } else {
+        b
+    }
 }
 	</code></pre>
 	</section>
