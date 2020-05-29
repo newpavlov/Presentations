@@ -58,7 +58,8 @@
 	<h1>Rust</h1>
 	<h3>The memory safe and efficient language of the future</h3>
 	<p>
-		<small><a href="http://twitter.com/Manishearth">@Manishearth</a></small>
+		<small>Artyom Pavlov, 2020.</small>
+		<small>Based on <a href="https://github.com/Manishearth/Presentations">github.com/Manishearth/Presentations</a></small>
 	</p>
 </section>
 <section>
@@ -94,7 +95,7 @@ vector&lt;int>::iterator itr = x.begin();
 
 int j=0;
 for (itr; itr !=x.end(); itr++) {
-	x.push_back(j); // Uh oh!
+	x.push_back(j);
 	j++;
 	cout << j << " .. ";
 }
@@ -112,9 +113,6 @@ for (itr; itr !=x.end(); itr++) {
 		<li>Existing solutions for safety are slow and usually require a separate runtime with a GC</li>
 	</ul>
 	<img src="heartbleed.png">
-	</section>
-	<section>
-		<img src="xkcd-segfault.png">
 	</section>
 </section>
 <section>
@@ -139,7 +137,8 @@ loop {
 }
 
 fn multiply(x: i32, y: i32) -> i32 {
-	return x*y // The return statement is unnecessary, this will be explained later
+	// The return statement is unnecessary, this will be explained later
+	return x*y;
 }
 	</code></pre>
 	</section>
@@ -173,8 +172,8 @@ let number = 5u32;
 let size = match number {
 	0 => "none",
 	2 | 3 => "tiny",
-	4...7 => "small",	
-	8...20 => "medium",
+	4..=7 => "small",	
+	8..=20 => "medium",
 	_ => "large"
 };
 // Multiple statements in a match work!
@@ -263,7 +262,7 @@ let perimeter = match shape {
 
 // Patterns nest pretty well
 match point {
-	Point {x: 2...6, y: -1...5} => println!("I like this point"),
+	Point {x: 2..=6, y: -1..=5} => println!("I like this point"),
 	_ => println!("I do not like this point")
 }
 	</code></pre>
@@ -421,7 +420,7 @@ impl Point {
 let mut x = Box::new(1); // On the heap
 *x = 2;
 
-// Type Box&lt;u32>
+// Type Box&lt;i32>
 // Also gets moved, not copied
 
 fn abc() {
@@ -462,7 +461,7 @@ match maybe_heap {
 	<section>
 		<h2>Strings and arrays</h2>
 	<pre><code class="rust" data-trim style="font-size: 18px; margin-top: 20px;">
-let mut fixed_len_vec = [1,2,3]; // Of type [u32, ..3]
+let mut fixed_len_vec = [1,2,3]; // Of type [u32; 3]
 fixed_len_vec[1] = 2;
 let mut buffer = vec![1,2,3]; // Of type Vec&lt;u32>
 buffer.push(20); // Now it is of length 4!
@@ -488,7 +487,8 @@ fn dangle() -> Box&lt;u32> {
  unsafe {
   // Null pointers!
   let mut p: *mut int = ptr::null_mut();
-  let b = Box::new(1u32); // Heap memory, will be deallocated at the end of this function
+  // Heap memory, will be deallocated at the end of this function
+  let b = Box::new(1u32);
   ptr::write(p, *b);
   mem::transmute(p) // Converts to box and .. uh oh .. returns!
  }
@@ -527,7 +527,6 @@ fn dangle() -> Box&lt;u32> {
 			<li><a href="http://doc.rust-lang.org/book">http://doc.rust-lang.org/book</a></li>
 			<li><a href="http://rustbyexample.com/">http://rustbyexample.com/</a></li>
 			<li><a href="http://doc.rust-lang.org/">http://doc.rust-lang.org/</a></li>
-			<li><a href="http://manishearth.github.io/Presentations/Rust">http://manishearth.github.io/Presentations/Rust</a></li>
 			<li><a href="http://users.rust-lang.org/">http://users.rust-lang.org/</a></li>
 			<li><a href="http://reddit.com/r/rust/">http://reddit.com/r/rust/</a></li>
 		</ul>
